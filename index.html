@@ -29,6 +29,7 @@
         <script>
         var numberOfFaces = 5;
         var theLeftSide = document.getElementById("leftSide");
+        var theRightSide = document.getElementById("rightSide");
 
         function generateFaces(number) {
           var newImg = null;
@@ -40,6 +41,8 @@
             newImg.style.left = rand[1]+"px";
             theLeftSide.appendChild(newImg);
           }
+
+          clone();
         }
 
         function random() {
@@ -47,6 +50,12 @@
           pos[0] = Math.floor(Math.random() * 400);
           pos[1] = Math.floor(Math.random() * 400);
           return pos;
+        }
+
+        function clone() {
+          var leftSideImages = theLeftSide.cloneNode(true);
+          leftSideImages.removeChild(leftSideImages.lastChild);
+          theRightSide.appendChild(leftSideImages);
         }
 
         (function start() {
