@@ -30,6 +30,7 @@
         var numberOfFaces = 5;
         var theLeftSide = document.getElementById("leftSide");
         var theRightSide = document.getElementById("rightSide");
+        var theBody = document.getElementsByTagName("body")[0];
 
         function generateFaces(number) {
           var newImg = null;
@@ -56,6 +57,38 @@
           var leftSideImages = theLeftSide.cloneNode(true);
           leftSideImages.removeChild(leftSideImages.lastChild);
           theRightSide.appendChild(leftSideImages);
+          addEvent();
+        }
+
+        function addEvent() {
+          theLeftSide.lastChild.onclick = function nextLevel(event){
+              event.stopPropagation();
+              numberOfFaces += 5;
+              removeAll();
+              generateFaces(numberOfFaces);
+          };
+
+          theBody.onclick = function gameOver() {
+              alert("Game Over!");
+              theBody.onclick = null;
+              theLeftSide.lastChild.onclick = null;
+              removeAll();
+              restart();
+          };
+        }
+
+        function removeAll() {
+          while (theLeftSide.firstChild) {
+            theLeftSide.removeChild(theLeftSide.firstChild);
+          }
+          while (theRightSide.firstChild) {
+            theRightSide.removeChild(theRightSide.firstChild);
+          }
+        }
+
+        function restart() {
+          numberOfFaces = 5;
+          generateFaces(numberOfFaces);
         }
 
         (function start() {
