@@ -36,8 +36,9 @@
             var rand = random();
             newImg = document.createElement("img");
             newImg.src = "smile.png";
+            newImg.style.top = rand[0]+"px";
+            newImg.style.left = rand[1]+"px";
             theLeftSide.appendChild(newImg);
-
           }
         }
 
